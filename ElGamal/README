@@ -1,0 +1,30 @@
+Key generation
+==============
+The key generator works as follows:
+
+Alice generates an efficient description of a cyclic group G\, of order q\, with generator g. See below for a discussion on the required properties of this group.
+Alice chooses an x randomly from { 1, ... , q-1 }.
+Alice computes h := g^x.
+Alice publishes h, along with the description of G, q, g , as her public key. Alice retains x as her private key, which must be kept secret.
+
+Encryption
+==========
+The encryption algorithm works as follows: to encrypt a message m to Alice under her public key (G,q,g,h),
+
+Bob chooses a random y from { 1, ... , q-1 }, then calculates c_1:=g^y.
+Bob calculates the shared secret s:=h^y.
+Bob maps his secret message m onto an element m' of G.
+Bob calculates c_2:=m'\cdot s.
+Bob sends the ciphertext (c_1,c_2)=(g^y, m'\cdot h^y)=(g^y, m'\cdot(g^x)^y) to Alice.
+Note that one can easily find h^y if one knows m'. Therefore, a new y is generated for every message to improve security. For this reason, y is also called an ephemeral key.
+
+Decryption
+==========
+The decryption algorithm works as follows: to decrypt a ciphertext (c_1,c_2) with her private key x,
+
+Alice calculates the shared secret s:=c_1{}^x
+and then computes m':=c_2 \cdot s^{-1} which she then converts back into the plaintext message m, where s^{-1} is the inverse of s in the group G. (E.g. modular multiplicative inverse if G is a subgroup of a multiplicative group of integers modulo n).
+The decryption algorithm produces the intended message, since
+ c_2 \cdot s^{-1} = m'\cdot h^y \cdot (g^{xy})^{-1} = m'\cdot g^{xy} \cdot g^{-xy} = m'.
+
+ src: https://en.wikipedia.org/wiki/ElGamal_encryption
