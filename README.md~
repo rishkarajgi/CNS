@@ -27,6 +27,3 @@ ii. In the terminal, go to parent directory of givaro-3.8.0
 iii. ./configure --prefix=/tmp/givaro-exec
 iv. make; make install
 
-
-To compile GMP programs:
-	gcc program_name.c -l gmp
