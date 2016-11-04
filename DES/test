@@ -1,0 +1,5 @@
+ gcc -O3 des.c run_des.c -o run_des.o
+
+ run_des.o -g /tmp/keyfile.key
+ run_des.o -e /tmp/keyfile.key /home/user/sample.txt /home/user/sample.enc
+ run_des.o -d /tmp/keyfile.key /home/user/sample.enc /home/user/sample_decrypted.txt
