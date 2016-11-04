@@ -1,0 +1,4 @@
+[tversion] GCC: 4.2.1
+[tversion] GMP: header 6.0.0, library 6.0.0
+[tversion] MPFR tuning parameters from default
+PASS tversion (exit status: 0)
